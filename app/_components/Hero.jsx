@@ -1,8 +1,8 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
-import { LampContainer } from "../../components/ui/lamp";
+
 import { Button } from '../../components/ui/button';
+import Header from './Header';
+import Link from 'next/link';
 
 const Hero = () => {
     return (
@@ -32,7 +32,7 @@ const Hero = () => {
                     </defs>
                 </svg>
             </div>
-
+            <Header />
             <main>
                 <div className="relative py-24 sm:py-32 lg:pb-40">
                     <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -44,14 +44,14 @@ const Hero = () => {
                                 Track, Budget, and Achieve Your Financial Goals Effortlessly.
                             </p>
                             <div className="mt-10 flex items-center justify-center gap-x-6">
-                                <Button>Get Started</Button>
+                                <Link href='/sign-in'><Button size='lg' >Get Started</Button></Link>
 
                             </div>
                         </div>
                         <div className="mt-16 flow-root sm:mt-24">
                             <div className="-m-2 rounded-xl bg-gray-900/5 p-2 ring-1 ring-inset ring-gray-900/10 lg:-m-4 lg:rounded-2xl lg:p-4">
                                 <img
-                                    src="https://tailwindui.com/img/component-images/project-app-screenshot.png"
+                                    src='/dashboard.png'
                                     alt="App screenshot"
                                     width={2432}
                                     height={1442}
