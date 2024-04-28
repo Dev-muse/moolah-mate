@@ -1,5 +1,7 @@
-import React from 'react'
+'use client';
+
 import BudgetList from './_components/BudgetList';
+
 
 const Budgets = () => {
     return (
