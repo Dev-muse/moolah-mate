@@ -7,27 +7,34 @@ import { budgets, Expenses } from '../../../../../utils/schema';
 import { date } from 'drizzle-orm/pg-core';
 import { toast } from 'sonner';
 import moment from 'moment';
+import { Loader } from 'lucide-react';
 
 const AddExpense = ({ budgetId, user, refreshData }) => {
 
     const [budgetName, setBudgetName] = useState()
     const [budgetAmount, setBudgetAmount] = useState()
 
+    const [loading, setLoading] = useState(false)
+
+    // used to add new expense 
     const addNewExpense = async () => {
+        setLoading(true)
         const result = await db.insert(Expenses).values({
             name: budgetName,
             amount: budgetAmount,
             budgetId: budgetId,
             createdAt: moment().format('DD/MM/YYYY'),
         }).returning({ insertedId: budgets.id })
-
+        setBudgetAmount(0)
+        setBudgetName('')
         console.log('result add expense', result)
         if (result) {
+            setLoading(false)
             toast('New expense added!')
             refreshData()
-            setBudgetAmount(0)
-            setBudgetName('')
+
         }
+        setLoading(false)
     }
     return (
         <div className='p-5 rounded-lg border-2  border-primary'>
@@ -49,7 +56,10 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
             </div>
             <Button disabled={!(budgetAmount && budgetName)}
                 onClick={() => addNewExpense()}
-                className="mt-4 w-full">Add New Expense</Button>
+                className="mt-4 w-full"
+            >{
+                    loading ? <Loader className='animate-spin' /> : 'Add new expense'
+                }</Button>
         </div>
     )
 }

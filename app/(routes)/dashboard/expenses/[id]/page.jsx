@@ -8,7 +8,7 @@ import { useUser } from '@clerk/nextjs'
 import { BudgetItem } from '../../budgets/_components/BudgetItem';
 import AddExpense from '../_components/AddExpense';
 import ExpenseListTable from '../_components/ExpenseListTable';
-import { Trash, Pen, PenBox } from 'lucide-react';
+import { Trash, Pen, PenBox, ArrowBigLeftIcon } from 'lucide-react';
 import { Button } from '../../../../../components/ui/button';
 import {
     AlertDialog,
@@ -85,13 +85,20 @@ const ExpenseDetails = ({ params }) => {
         route.replace('/dashboard/budgets');
     }
 
-
+    const router = useRouter()
 
     return (
         <div className="p-10">
             <h2 className="text-primary text-center 
-            text-2xl font-bold flex justify-between items-center">
-                My Expenses
+            text-2xl font-bold flex flex-col md:flex-row justify-between items-center">
+                <div className="flex gap-x-4 mb-5 md:mb-0 items-center">
+                    <span className="bg-primary p-1 rounded-full text-white">
+                        <ArrowBigLeftIcon
+                            className='cursor-pointer'
+                            onClick={() => router.back()} />
+                    </span>
+                    My Expenses
+                </div>
 
                 <div className="flex items-center gap-2">
 
@@ -134,7 +141,7 @@ const ExpenseDetails = ({ params }) => {
                     refreshData={() => getBudgetInfo()} />
             </div>
             <div className="mt-4">
-                <h2 className="font-bold text-lg">Expenses List</h2>
+
                 <ExpenseListTable
                     expensesList={expensesList}
                     refreshData={() => getBudgetInfo()}

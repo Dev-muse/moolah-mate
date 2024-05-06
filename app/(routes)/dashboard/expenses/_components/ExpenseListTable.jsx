@@ -19,33 +19,37 @@ const ExpenseListTable = ({ expensesList, refreshData }) => {
 
     }
     return (
-        <Table className="mt-3">
-            <TableHeader >
-                <TableRow>
-                    <TableHead >Expense</TableHead>
-                    <TableHead >Amount</TableHead>
-                    <TableHead >Date</TableHead>
-                    <TableHead >Action</TableHead>
-                </TableRow>
-            </TableHeader>
-            <TableBody>
-                {
-                    expensesList.map((expense) => {
-                        return (
-                            <TableRow key={expense.id}  >
-                                <TableCell>{expense.name}</TableCell>
-                                <TableCell>£{expense.amount}</TableCell>
-                                <TableCell>{expense.createdAt}</TableCell>
-                                <TableCell>
-                                    <Trash className='text-red-600 cursor-pointer'
-                                        onClick={() => deleteExpense(expense)} />
-                                </TableCell>
-                            </TableRow>
-                        )
-                    })
-                }
-            </TableBody>
-        </Table>
+        <>
+            <h2 className="font-bold text-lg my-4">Latest Expenses</h2>
+
+            <Table className="">
+                <TableHeader >
+                    <TableRow>
+                        <TableHead >Expense</TableHead>
+                        <TableHead >Amount</TableHead>
+                        <TableHead >Date</TableHead>
+                        <TableHead >Action</TableHead>
+                    </TableRow>
+                </TableHeader>
+                <TableBody>
+                    {
+                        expensesList.map((expense) => {
+                            return (
+                                <TableRow key={expense.id}  >
+                                    <TableCell>{expense.name}</TableCell>
+                                    <TableCell>£{expense.amount}</TableCell>
+                                    <TableCell>{expense.createdAt}</TableCell>
+                                    <TableCell>
+                                        <Trash className='text-red-600 cursor-pointer'
+                                            onClick={() => deleteExpense(expense)} />
+                                    </TableCell>
+                                </TableRow>
+                            )
+                        })
+                    }
+                </TableBody>
+            </Table>
+        </>
     )
 }
 
