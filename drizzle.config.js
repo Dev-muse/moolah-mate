@@ -5,6 +5,6 @@ export default {
     schema: "./utils/schema.jsx",
     driver: 'pg',
     dbCredentials: {
-        connectionString: NEXT_PUBLIC_DATABASE_URL,
+        connectionString: process.env.NEXT_PUBLIC_DATABASE_URL,
     }
 };
