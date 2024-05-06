@@ -6,6 +6,7 @@ import { db } from '../../../../../utils/dbConfig';
 import { budgets, Expenses } from '../../../../../utils/schema';
 import { date } from 'drizzle-orm/pg-core';
 import { toast } from 'sonner';
+import moment from 'moment';
 
 const AddExpense = ({ budgetId, user, refreshData }) => {
 
@@ -17,7 +18,7 @@ const AddExpense = ({ budgetId, user, refreshData }) => {
             name: budgetName,
             amount: budgetAmount,
             budgetId: budgetId,
-            createdAt: user?.primaryEmailAddress.emailAddress,
+            createdAt: moment().format('DD/MM/YYYY'),
         }).returning({ insertedId: budgets.id })
 
         console.log('result add expense', result)
